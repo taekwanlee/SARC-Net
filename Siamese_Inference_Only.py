@@ -1,22 +1,3 @@
-"""
-Siamese Network Age Regression - Inference Only Script
-=======================================================
-기존 Siamese_Network_age_regression_only_v3_Attention.py의 학습된 가중치를 불러와서
-inference만 수행하는 스크립트입니다.
-
-사용법:
-    python Siamese_Inference_Only.py \
-        --model_path "./models/Siamese_Age_Model.pth" \
-        --data_csv "./data/test.csv" \
-        --output_csv "./results/predictions.csv" \
-        --scaler_mean 50.0 \
-        --scaler_std 15.0
-
-필수 CSV 컬럼:
-    - file_path: 이미지 파일의 절대 경로
-    - chronoage: 실제 나이 (평가용, 추론만 할 경우 없어도 됨)
-"""
-
 import os
 import torch
 import torch.nn as nn
@@ -54,7 +35,7 @@ try:
     HAS_SKSURV = True
 except ImportError:
     HAS_SKSURV = False
-    print("[WARNING] scikit-survival이 설치되지 않았습니다. C-index 계산이 비활성화됩니다.")
+    print("[WARNING] scikit-survival이 설치되지 않았습니다.")
 
 
 # -------------------------------------------------------------
@@ -599,3 +580,4 @@ def run_inference(args):
 if __name__ == '__main__':
     args = parse_args()
     run_inference(args)
+
